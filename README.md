@@ -1,2 +1,2 @@
-# apirest-practice
-Api Rest practice for microservices developer vacant.
+# restapi-practice
+Rest Api practice for microservices developer vacant.
