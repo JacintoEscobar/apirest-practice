@@ -26,7 +26,7 @@ public class JwtUtils {
     @Value("${USER_GENERATOR}")
     private String USER_GENERATOR;
 
-    private final long EXPIRATION_TIME = 300000;
+    private final long EXPIRATION_TIME = 960000;
 
     public String generateToken(String username, String password) {
         return JWT

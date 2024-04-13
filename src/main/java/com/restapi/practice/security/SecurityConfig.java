@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
                     http.requestMatchers(HttpMethod.GET, "/health-check/**", "/auth/**").permitAll();
-                    http.requestMatchers(HttpMethod.GET, "/character/**").authenticated();
+                    http.requestMatchers(HttpMethod.GET, "/character/**", "/comic/**").authenticated();
                     http.anyRequest().denyAll();
                 })
                 .addFilterBefore(new JwtRequestFilter(jwtService), BasicAuthenticationFilter.class)
