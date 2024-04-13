@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(http -> {
-                    http.requestMatchers(HttpMethod.GET, "/health-check").permitAll();
+                    http.requestMatchers(HttpMethod.GET, "/health-check", "/auth").permitAll();
                     http.anyRequest().denyAll();
                 })
                 .build();

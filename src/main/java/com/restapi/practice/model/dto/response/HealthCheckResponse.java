@@ -1,16 +1,22 @@
 package com.restapi.practice.model.dto.response;
 
-import org.springframework.http.HttpStatus;
+import com.restapi.practice.model.dto.healthCheck.HealthCheckStates;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
-@AllArgsConstructor
-public class HealthCheckResponse {
-    private String timestamp;
-    private HttpStatus status;
-    private int code;
-    private String message;
+/**
+ * @author Jacinto Escobar Quezada
+ * @version 1.0.0
+ */
+
+@Getter
+public class HealthCheckResponse extends ApiResponse {
+    private HealthCheckStates healthCheckState;
+
+    @Builder
+    public HealthCheckResponse(String timestamp, String message, HealthCheckStates healthCheckState) {
+        super(timestamp, message);
+        this.healthCheckState = healthCheckState;
+    }
 }
-
