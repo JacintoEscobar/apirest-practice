@@ -8,9 +8,9 @@ import com.restapi.practice.err.ErrorResponseMessage;
 import com.restapi.practice.model.dto.auth.AuthResponseMessage;
 import com.restapi.practice.model.dto.requests.AuthRequest;
 import com.restapi.practice.model.dto.response.AuthResponse;
-import com.restapi.practice.service.JWTService;
-import com.restapi.practice.util.time.TimeUtils;
-import com.restapi.practice.util.validation.RequestValidation;
+import com.restapi.practice.service.JwtService;
+import com.restapi.practice.util.RequestValidation;
+import com.restapi.practice.util.TimeUtils;
 
 import jakarta.validation.Valid;
 
@@ -36,7 +36,7 @@ public class AuthController implements AuthResponseMessage {
     private RequestValidation requestValidation;
 
     @Autowired
-    private JWTService jwtService;
+    private JwtService jwtService;
 
     @GetMapping
     public ResponseEntity<?> auth(@RequestBody @Valid AuthRequest authRequest, BindingResult validation) {
@@ -47,6 +47,7 @@ public class AuthController implements AuthResponseMessage {
         } catch (Exception ex) {
             return new ResponseEntity<>(new ErrorResponse(timeUtils.getTimestamp(), ErrorResponseMessage.INTERNAL_SERVER_ERROR, ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        
         String token = jwtService.generateToken(authRequest);
         return new ResponseEntity<>(new AuthResponse(timeUtils.getTimestamp(), AuthResponseMessage.AUTHENTICATED, token), HttpStatus.OK);
     }

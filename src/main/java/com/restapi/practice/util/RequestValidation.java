@@ -1,4 +1,4 @@
-package com.restapi.practice.util.validation;
+package com.restapi.practice.util;
 
 import java.util.ArrayList;
 import java.util.List;

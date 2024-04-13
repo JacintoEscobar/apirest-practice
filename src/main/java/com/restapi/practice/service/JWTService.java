@@ -1,35 +1,39 @@
 package com.restapi.practice.service;
 
-import java.sql.Date;
 import java.util.Base64;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.restapi.practice.model.dto.requests.AuthRequest;
+import com.restapi.practice.util.JwtUtils;
+
+/**
+ * @author Jacinto Escobar Quezada
+ * @version 1.0.0
+ */
 
 @Service
-public class JWTService {
-    @Value("${SECRET}")
-    private String SECRET;
-    
-    @Value("${EXPIRATION_TIME}")
-    private long EXPIRATION_TIME;
-    
-    @Value("${TOKEN_PREFIX}")
-    private String TOKEN_PREFIX;
-    
-    @Value("${HEADER_PREFIX}")
-    private String HEADER_PREFIX;
+public class JwtService {
+    @Autowired
+    private JwtUtils jwtUtils;
 
     public String generateToken(AuthRequest authRequest) {
-        return JWT
-                .create()
-                .withClaim("username", Base64.getEncoder().encodeToString(authRequest.getUsername().getBytes()))
-                .withClaim("password", Base64.getEncoder().encodeToString(authRequest.getPassword().getBytes()))
-                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .sign(Algorithm.HMAC256(Base64.getEncoder().encodeToString(SECRET.getBytes())));
+        String username = Base64.getEncoder().encodeToString(authRequest.getUsername().getBytes());
+        String password = Base64.getEncoder().encodeToString(authRequest.getPassword().getBytes());
+        return jwtUtils.generateToken(username, password);
+    }
+
+    public DecodedJWT validatesToken(String token) {
+        return jwtUtils.validatesToken(token);
+    }
+
+    public String getUsername(DecodedJWT decodedJWT) {
+        return jwtUtils.getUsername(decodedJWT);
+    }
+
+    public String getAuthorities(DecodedJWT decodedJWT) {
+        return jwtUtils.getAuthorities(decodedJWT);
     }
 }

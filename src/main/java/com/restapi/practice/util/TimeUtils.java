@@ -1,4 +1,4 @@
-package com.restapi.practice.util.time;
+package com.restapi.practice.util;
 
 import java.text.SimpleDateFormat;
 

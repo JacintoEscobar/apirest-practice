@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restapi.practice.model.dto.healthCheck.HealthCheckResponseMessage;
 import com.restapi.practice.model.dto.healthCheck.HealthCheckStates;
 import com.restapi.practice.model.dto.response.HealthCheckResponse;
-import com.restapi.practice.util.time.TimeUtils;
+import com.restapi.practice.util.TimeUtils;
 
 /**
  * @author Jacinto Escobar Quezada
