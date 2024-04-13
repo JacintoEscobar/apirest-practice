@@ -3,6 +3,11 @@ package com.restapi.practice.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Jacinto Escobar Quezada
+ * @version 1.0.0
+ */
+
 public abstract class ApiHashBuilder {
     public String makeHash(String ts, String privateKey, String publicKey) {
         String input = String.format(ts + privateKey + publicKey);

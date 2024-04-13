@@ -15,6 +15,11 @@ import com.restapi.practice.err.ErrorResponseMessage;
 import com.restapi.practice.util.ApiHashBuilder;
 import com.restapi.practice.util.TimeUtils;
 
+/**
+ * @author Jacinto Escobar Quezada
+ * @version 1.0.0
+ */
+
 @Service
 public class MarvelApiService extends ApiHashBuilder {
     @Value("${API_URL}")
